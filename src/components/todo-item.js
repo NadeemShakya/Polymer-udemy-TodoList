@@ -42,6 +42,7 @@ class TodoItem extends LitElement {
         display: block;
         line-height: 1.2;
         transition: color 0.4s;
+        cursor: pointer;
       }
 
       button {
