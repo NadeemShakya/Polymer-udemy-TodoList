@@ -11,11 +11,14 @@ class TodoApp extends LitElement {
         display: none;
       }
       :host {
-        display: block;
+        display: inline-block;
         text-align: center;
+        background: #ffffff;
+        width: 80%;
+        
       }     
       h1 {
-        color: pink;
+        color: #02b875;
       }
     `
   ]
@@ -57,11 +60,13 @@ class TodoApp extends LitElement {
   render() {
     return html`
 
+    <div class = "todoApp">
+      <h1>My Todo List</h1>
       <add-item>
-        
       </add-item>
-
       <list-todo .todo="${this.todoList}"></list-todo>
+   </div> 
+    
     `;
   }
 }
