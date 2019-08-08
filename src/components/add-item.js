@@ -79,7 +79,7 @@ class AddItem extends LitElement {
           border: none;
           color: #ffffff;
           border-radius: 0 3px 3px 0;
-
+          outline: none;
         }
 
         .addItem button:hover {
