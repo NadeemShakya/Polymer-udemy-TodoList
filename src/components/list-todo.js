@@ -1,11 +1,20 @@
-import { LitElement, html } from "lit-element";
+import { LitElement, html, css } from "lit-element";
 import "./todo-item";
 class ListTodo extends LitElement {
   static get properties() {
     return {
       todo: Array,
-      user: String,
+      user: String
     };
+  }
+
+  static get styles() {
+    return css`
+      ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+      }
+    `;
   }
 
   constructor() {

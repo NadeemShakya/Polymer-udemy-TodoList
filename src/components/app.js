@@ -5,6 +5,7 @@ import "lodash";
 
 class TodoApp extends LitElement {
   static get styles() {
+
     return [ 
       css `
       :host([hidden]) {
@@ -22,10 +23,11 @@ class TodoApp extends LitElement {
       }
     `
   ]
+
   }
   static get properties() {
     return {
-      todoList: Array,
+      todoList: Array
     };
   }
   constructor() {
