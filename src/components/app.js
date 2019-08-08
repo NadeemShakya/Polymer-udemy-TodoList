@@ -5,7 +5,25 @@ import "lodash";
 
 class TodoApp extends LitElement {
   static get styles() {
-    return css``;
+
+    return [ 
+      css `
+      :host([hidden]) {
+        display: none;
+      }
+      :host {
+        display: inline-block;
+        text-align: center;
+        background: #ffffff;
+        width: 80%;
+        
+      }     
+      h1 {
+        color: #02b875;
+      }
+    `
+  ]
+
   }
   static get properties() {
     return {
@@ -43,9 +61,14 @@ class TodoApp extends LitElement {
   }
   render() {
     return html`
-      <add-item> </add-item>
 
+    <div class = "todoApp">
+      <h1>My Todo List</h1>
+      <add-item>
+      </add-item>
       <list-todo .todo="${this.todoList}"></list-todo>
+   </div> 
+    
     `;
   }
 }

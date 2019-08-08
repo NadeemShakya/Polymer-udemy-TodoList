@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit-element";
+import { LitElement, html, css} from "lit-element";
 let i = 0;
 class AddItem extends LitElement {
   static get properties() {
@@ -46,15 +46,64 @@ class AddItem extends LitElement {
     );
     this.todoItem = "";
   }
+  static get styles() {
+    return [
+      css `
+        .addItem {
+          width: 70%;
+          text-align: center;
+          display: block;
+          margin: 0 auto;
+
+        }
+        .addItem input[type = "text"] {
+          width: 90%;
+          height: 34px;
+          padding: 6px 12px;
+          background-color: #fff;
+          background-image: none;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+          float: left;
+          color: #555;
+          outline: none;
+          border-radius: 3px 0 0 3px;
+          font-size: 14px;
+        }
+
+        .addItem button {
+          float: right;
+          width: 10%;
+          height: 34px;
+          background: rgba(2,184,117, .8);
+          border: none;
+          color: #ffffff;
+          border-radius: 0 3px 3px 0;
+
+        }
+
+        .addItem button:hover {
+          background: rgba(2,184,117, 1);
+          opacity: 1;
+          transition: .3s;
+          cursor: pointer;
+        }
+
+        .clearfix::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+      `
+    ]
+  }
   render() {
     return html`
-      <div>
-        <h1>ADD ITEM</h1>
-        <input .value = "${this.todoItem}" @keyup = "${e =>
-      this.handleInputChange(e)}"></input>
+      <div class = "addItem clearfix">
+        <input type = "text" .value = "${this.todoItem}" @keyup = "${e =>
+          this.handleInputChange(e)}" placeholder = "Add your todo"></input>
+        <button @click = "${this.handleAddTodo}" class = "addItemButton">Add</button>
         
-        <button @click = "${this.handleAddTodo}">Add</button>
-        <p>${this.todoItem}</p>
       </div>
       
     `;
