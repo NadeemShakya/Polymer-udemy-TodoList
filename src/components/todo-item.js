@@ -1,12 +1,92 @@
-import { LitElement, html } from "lit-element";
-import "@polymer/iron-icon/iron-icon.js";
-import "@polymer/iron-icons/iron-icons.js";
+import { LitElement, html, css } from "lit-element";
 class TodoItem extends LitElement {
-  
   static get properties() {
     return {
-      todoItem: Object,
+      todoItem: Object
     };
+  }
+
+  static get styles() {
+    return css`
+      .todo {
+        font-size: 24px;
+        position: relative;
+      }
+
+      li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+      }
+
+      .toggle {
+        cursor: pointer;
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        margin: auto;
+        border: none;
+      }
+
+      li label {
+        white-space: pre-line;
+        word-break: break-all;
+        padding: 15px 80px 15px 35px;
+        margin-left: 35px;
+        display: block;
+        line-height: 1.2;
+        transition: color 0.4s;
+      }
+
+      button {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        font-size: 100%;
+        vertical-align: baseline;
+        font-family: inherit;
+        font-weight: inherit;
+        color: inherit;
+        -webkit-appearance: none;
+        appearance: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-font-smoothing: antialiased;
+      }
+
+      .active {
+        text-decoration: line-through;
+      }
+
+      li .destroy {
+        cursor: pointer;
+        position: absolute;
+        top: -14px;
+        right: 30px;
+        display: block;
+        width: 40px;
+        height: 48px;
+        margin: auto 0;
+        font-size: 70px;
+        color: #cc9a9a;
+        margin-bottom: 0px;
+        transition: color 0.2s ease-out;
+      }
+
+      li .destroy:hover {
+        color: #af5b5e;
+      }
+
+      li .destroy:after {
+        content: "×";
+      }
+
+      li:hover .destroy {
+        display: inline-block;
+      }
+    `;
   }
 
   constructor() {
@@ -18,10 +98,10 @@ class TodoItem extends LitElement {
     this.dispatchEvent(
       new CustomEvent("deleteItem", {
         detail: {
-          id: this.todoItem.id,
+          id: this.todoItem.id
         },
         bubbles: true,
-        composed: true,
+        composed: true
       })
     );
   }
@@ -31,40 +111,33 @@ class TodoItem extends LitElement {
       new CustomEvent("completeTodoItem", {
         detail: {
           id: this.todoItem.id,
-          input: e.target,
+          input: e.target
         },
         bubbles: true,
-        composed: true,
+        composed: true
       })
     );
+    this.requestUpdate();
   }
 
   render() {
-    let checkbox = this.todoItem.completed
-      ? html`
-          <input
-            type="checkbox"
-            @click="${e => this.completeTodo(e)}"
-            id="${this.todoItem.id}"
-            checked
-          />
-        `
-      : html`
-          <input
-            type="checkbox"
-            @click="${e => this.completeTodo(e)}"
-            id="${this.todoItem.id}"
-          />
-        `;
     return html`
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <div class = "container-fluid">
-        <span>${checkbox}</span>
-        <span>${this.todoItem.task}</span>
-        <iron-icon icon="delete" @click="${this.dropTodoItem}"></iron-icon>
-      </div>
-      
+      <li>
+        <div class="todo">
+          <div class="view">
+            <input
+              type="checkbox"
+              class="toggle"
+              .checked="${this.todoItem.completed}"
+              @click="${() => this.completeTodo(this.todoItem.id)}"
+            />
+            <label class="${this.todoItem.completed ? "active" : "inactive"}"
+              >${this.todoItem.task}</label
+            >
+            <button class="destroy" @click="${this.dropTodoItem}"></button>
+          </div>
+        </div>
+      </li>
     `;
   }
 }
