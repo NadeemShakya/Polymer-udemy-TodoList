@@ -27,7 +27,7 @@ class ListTodo extends LitElement {
         ${this.todo.map(
           (value, index) =>
             html`
-              <li><todo-item .todoItem="${value}"></todo-item></li>
+              <todo-item .todoItem="${value}"></todo-item>
             `
         )}
       </ul>
