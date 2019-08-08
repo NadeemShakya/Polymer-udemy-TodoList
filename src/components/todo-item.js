@@ -71,6 +71,7 @@ class TodoItem extends LitElement {
       }
 
       li .destroy {
+        outline: none;
         display: none;
         cursor: pointer;
         position: absolute;
