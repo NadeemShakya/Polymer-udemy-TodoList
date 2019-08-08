@@ -5,20 +5,20 @@ import "lodash";
 
 class TodoApp extends LitElement {
   static get styles() {
-    return css `
+    return [ 
+      css `
       :host([hidden]) {
         display: none;
       }
       :host {
-
         display: block;
-        background: red;
         text-align: center;
       }     
       h1 {
         color: pink;
       }
     `
+  ]
   }
   static get properties() {
     return {

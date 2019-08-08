@@ -49,12 +49,11 @@ class AddItem extends LitElement {
   render() {
     return html`
       <div>
-        <h1>ADD ITEM</h1>
         <input .value = "${this.todoItem}" @keyup = "${e =>
       this.handleInputChange(e)}"></input>
         
         <button @click = "${this.handleAddTodo}">Add</button>
-        <p>${this.todoItem}</p>
+        
       </div>
       
     `;
