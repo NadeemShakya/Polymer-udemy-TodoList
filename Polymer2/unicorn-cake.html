@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="unicorn-cake">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `unicorn-cake`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class UnicornCake extends Polymer.Element {
+      static get is() { return 'unicorn-cake'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'unicorn-cake'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(UnicornCake.is, UnicornCake);
+  </script>
+</dom-module>
