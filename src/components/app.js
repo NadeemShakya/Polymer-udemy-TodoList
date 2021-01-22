@@ -11,9 +11,11 @@ class TodoApp extends LitElement {
           display: none;
         }
         :host {
-          display: inline-block;
+          display: block;
           background: #ffffff;
           width: 80%;
+          padding: 10px;
+          margin: 20px auto;
         }
         h1 {
           text-align: center;
